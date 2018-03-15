@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRecipes } from '../actions'
 import _ from 'lodash'
 import RecipeIngredients from './recipe_ingredients'
 
 class recipeList extends Component {
-  componentDidMount() {
-    this.props.getRecipes() 
-  }
 
   showIngredients = (obj) => {
     console.log('hi', obj.ingredients)
@@ -45,4 +41,4 @@ const mapStateToProps = (state, ownProps) => {
   return { recipes: state.recipes }
 }
 
-export default connect(mapStateToProps, { getRecipes })(recipeList)
+export default connect(mapStateToProps)(recipeList)

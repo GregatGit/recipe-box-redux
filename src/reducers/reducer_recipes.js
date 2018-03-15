@@ -1,12 +1,11 @@
 import _ from 'lodash'
-import { GET_RECIPES } from '../actions'
+import data from '../data/recipes.json'
 
-export default function(state = {}, action) {
-  switch (action.type) {
-    case GET_RECIPES:
-      return _.mapKeys(action.payload, 'name')
-    
-    default:
-      return state
+export default function(state = null, action) {
+
+  if (!state) {
+    state = _.mapKeys(data, 'name')
   }
+  console.log('state', state)
+  return state
 }
