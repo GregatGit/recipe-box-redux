@@ -15,8 +15,7 @@ class recipeList extends Component {
       return (
         <li 
           key={recipe.name}
-          onClick={() => {this.showIngredients(this.props.recipes[recipe.name])}}
-          
+          onClick={() => {this.showIngredients(this.props.recipes[recipe.name])}}         
         >
           {recipe.name}
         </li>
@@ -27,6 +26,7 @@ class recipeList extends Component {
   render() {
     return (
       <div>
+        <button className='btn btn-primary'>Test</button>
         Recipe List
         <ul>
           {this.renderRecipes()}
