@@ -6,6 +6,6 @@ export default function(state = null, action) {
   if (!state) {
     state = _.mapKeys(data, 'name')
   }
-  console.log('state', state)
+  // console.log('state', state)
   return state
 }

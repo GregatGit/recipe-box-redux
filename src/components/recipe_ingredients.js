@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { connect } from 'react-redux'
+import React from 'react'
 
-class RecipeIngredients extends Component {
-  render() {
-    return (
-      <div>Choose a recipe</div>
-    )
+const RecipeIngredients = (props) => {
+  function showIngredients(ingredients) {
+    return ingredients.map(ingredient => {
+      return <li className='list-group-item' key={ingredient}>{ingredient}</li>
+    })
   }
+
+  return (
+    <div>
+      <h4>{props.name.toUpperCase()}</h4>
+      {props.name ? <h5>Ingredients:</h5> : 'Click on a recipe'}
+      <ul>
+      {showIngredients(props.ingredients)}
+      </ul>
+    </div>
+  )
 }
 
 export default RecipeIngredients

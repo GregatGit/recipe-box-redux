@@ -4,9 +4,17 @@ import _ from 'lodash'
 import RecipeIngredients from './recipe_ingredients'
 
 class recipeList extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      ingredients: [],
+      name: ''
+    }
+  }
+  
 
   showIngredients = (obj) => {
-    console.log('hi', obj.ingredients)
+    this.setState({ingredients: obj.ingredients, name: obj.name})
   }
 
   renderRecipes = () => {
@@ -14,8 +22,9 @@ class recipeList extends Component {
     return _.map(this.props.recipes, recipe => {
       return (
         <li 
+          className='list-group-item'
           key={recipe.name}
-          onClick={() => {this.showIngredients(this.props.recipes[recipe.name])}}         
+          onClick={() => {this.showIngredients(this.props.recipes[recipe.name])}}  
         >
           {recipe.name}
         </li>
@@ -26,12 +35,11 @@ class recipeList extends Component {
   render() {
     return (
       <div>
-        <button className='btn btn-primary'>Test</button>
-        Recipe List
-        <ul>
+        <h3>Recipe List</h3>
+        <ul className='list-group'>
           {this.renderRecipes()}
         </ul>
-        <RecipeIngredients />
+        <RecipeIngredients name={this.state.name} ingredients={this.state.ingredients}/>
       </div>
     )
   }

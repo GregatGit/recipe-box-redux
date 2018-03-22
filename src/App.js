@@ -5,6 +5,9 @@ class App extends Component {
   render() {
     return (
       <div>
+        <div>
+          <h1>Recipe Box</h1>
+        </div>
         <RecipeList />
       </div>
     );
