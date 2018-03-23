@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import RecipeIngredients from './recipe_ingredients'
 import { deleteRecipe } from '../actions'
+import RecipeForm from './recipe_form'
 
 class recipeList extends Component {
   constructor (props) {
@@ -24,7 +25,7 @@ class recipeList extends Component {
   }
 
   renderRecipes = () => {
-    console.log('here', this.props.recipes)
+    //console.log('here', this.props.recipes)
     return _.map(this.props.recipes, recipe => {
       return (
         <li>
@@ -40,14 +41,25 @@ class recipeList extends Component {
     })
   }
 
+  addNewRecipe = () => {
+    console.log('add new recipe')
+    this.setState({name: '', ingredients: []})
+  }
+
   render() {
     return (
       <div>
+        <button
+          id='newRecipe'
+          className='btn btn-primary'
+          onClick={() => {this.addNewRecipe()}}
+        >Add new recipe</button>
         <h3>Recipe List</h3>
         <ul className='list-group'>
           {this.renderRecipes()}
         </ul>
         <RecipeIngredients name={this.state.name} ingredients={this.state.ingredients}/>
+        <RecipeForm />
       </div>
     )
   }
