@@ -11,3 +11,7 @@ h1 {
 #newRecipe {
   float: right;
 }
+
+.error-warning-form {
+  color: red
+}

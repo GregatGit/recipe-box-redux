@@ -10,11 +10,11 @@ class recipeList extends Component {
     super(props)
     this.state = {
       ingredients: [],
-      name: ''
+      name: '',
+      showAddRecipe: false
     }
   }
   
-
   showIngredients = (obj) => {
     this.setState({ingredients: obj.ingredients, name: obj.name})
   }
@@ -43,7 +43,7 @@ class recipeList extends Component {
 
   addNewRecipe = () => {
     console.log('add new recipe')
-    this.setState({name: '', ingredients: []})
+    this.setState({showAddRecipe: true})
   }
 
   render() {

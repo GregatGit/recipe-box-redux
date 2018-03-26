@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import data from '../data/recipes.json'
-import { DELETE_RECIPE } from '../actions'
+import { DELETE_RECIPE, ADD_RECIPE } from '../actions'
 
 export default function(state = null, action) {
 
@@ -13,9 +13,13 @@ export default function(state = null, action) {
       
       return _.omit(state, action.payload)
   
-    default:
+    case ADD_RECIPE:
+      const newRecipe = action.payload
+      return _.assign(state, {newRecipe})
+    
+      default:
       break;
   }
-  // console.log('state', state)
+  console.log('state', state)
   return state
 }
