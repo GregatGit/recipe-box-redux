@@ -14,8 +14,9 @@ export default function(state = null, action) {
       return _.omit(state, action.payload)
   
     case ADD_RECIPE:
-      const newRecipe = action.payload
-      return _.assign(state, {newRecipe})
+      const newState = state
+      newState[action.payload.name] = action.payload
+      return newState
     
       default:
       break;
