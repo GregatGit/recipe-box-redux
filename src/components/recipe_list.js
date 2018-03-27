@@ -28,7 +28,7 @@ class recipeList extends Component {
     //console.log('here', this.props.recipes)
     return _.map(this.props.recipes, recipe => {
       return (
-        <li>
+        <li key={recipe.name}>
           <span 
           className='list-group-item'
           key={recipe.name}

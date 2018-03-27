@@ -15,7 +15,7 @@ class RecipeForm extends React.Component {
   renderField = (field) => {
     const { label, meta: { touched, error }} = field
     return (
-      <div>
+      <div key={label}>
         <label>{label}</label>
         <input
          className='form-control'
