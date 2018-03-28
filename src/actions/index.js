@@ -15,4 +15,3 @@ export function addRecipe(recipe) {
     payload: recipe
   }
 }
-

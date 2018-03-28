@@ -29,13 +29,15 @@ class RecipeForm extends React.Component {
   }
 
   submitRecipe = values => {
-    console.log(values)
+    console.log('submit', values)
 
     const obj = {
       name: values.recipeName,
       ingredients: [values.ingredient1, values.ingredient2]
     }
-    console.log('obj', obj)
+    if (values.ingredient3){
+      obj.ingredients.push(values.ingredient3)
+    }
     this.props.addRecipe(obj)
   }
 

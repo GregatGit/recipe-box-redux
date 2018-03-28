@@ -18,7 +18,7 @@ export default function(state = null, action) {
       // newState[action.payload.name] = action.payload
       return _.assign(state, {[action.payload.name]: action.payload})
     
-      default:
+    default:
       break;
   }
   console.log('state', state)
