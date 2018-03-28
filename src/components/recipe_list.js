@@ -11,7 +11,8 @@ class recipeList extends Component {
     this.state = {
       ingredients: [],
       name: '',
-      showAddRecipe: false
+      showAddRecipe: false,
+      showRecipeButton: true
     }
   }
   
@@ -43,23 +44,34 @@ class recipeList extends Component {
 
   addNewRecipe = () => {
     console.log('add new recipe')
-    this.setState({showAddRecipe: true})
+    this.setState({
+      showAddRecipe: true,
+      ingredients: [],
+      name: ''
+    })
   }
 
   render() {
     return (
       <div>
-        <button
+        {this.state.showRecipeButton ? <button
           id='newRecipe'
           className='btn btn-primary'
-          onClick={() => {this.addNewRecipe()}}
-        >Add new recipe</button>
+          onClick={() => {
+            this.addNewRecipe()
+            this.setState({showRecipeButton: false})
+          }
+          }
+        >Add new recipe</button> : ''}
         <h3>Recipe List</h3>
         <ul className='list-group'>
           {this.renderRecipes()}
         </ul>
         <RecipeIngredients name={this.state.name} ingredients={this.state.ingredients}/>
-        <RecipeForm />
+        {this.state.showAddRecipe ? 
+          <div><RecipeForm /><button className='btn btn-warning' onClick={() => {
+            this.setState({showAddRecipe: false, showRecipeButton: true})
+          }}>cancel</button></div> : ''}
       </div>
     )
   }
