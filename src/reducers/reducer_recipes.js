@@ -21,6 +21,5 @@ export default function(state = null, action) {
     default:
       break;
   }
-  console.log('state', state)
   return state
 }
