@@ -29,14 +29,13 @@ class recipeList extends Component {
     //console.log('here', this.props.recipes)
     return _.map(this.props.recipes, recipe => {
       return (
-        <li key={recipe.name}>
-          <span 
-          className='list-group-item'
-          key={recipe.name}
-          onClick={() => {this.showIngredients(this.props.recipes[recipe.name])}}  
-        >
+        <li className='list-group-item' key={recipe.name}>
+          <span          
+            key={recipe.name}
+            onClick={() => {this.showIngredients  (this.props.recipes[recipe.name])}}  
+          >
           {recipe.name}</span>
-          <span><button onClick={() => {this.deleteRecipe(recipe.name)}} className='btn btn-danger'>Delete {recipe.name}</button></span>
+          <span className='del-button'><button onClick={() => {this.deleteRecipe(recipe.name)}} className='btn btn-danger'>Delete {recipe.name}</button></span>
         </li>
       )
     })
@@ -69,9 +68,13 @@ class recipeList extends Component {
         </ul>
         <RecipeIngredients name={this.state.name} ingredients={this.state.ingredients}/>
         {this.state.showAddRecipe ? 
-          <div><RecipeForm /><button className='btn btn-warning' onClick={() => {
-            this.setState({showAddRecipe: false, showRecipeButton: true})
-          }}>cancel</button></div> : ''}
+          <div>
+            <RecipeForm />
+            <button className='btn btn-warning del-button' onClick={() => {
+              this.setState({showAddRecipe: false, showRecipeButton: true})
+              }}>cancel
+            </button>
+          </div> : ''}
       </div>
     )
   }

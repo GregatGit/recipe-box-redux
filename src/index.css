@@ -15,3 +15,7 @@ h1 {
 .error-warning-form {
   color: red
 }
+
+.del-button {
+  float: right;
+}
