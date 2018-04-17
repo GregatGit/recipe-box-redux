@@ -16,6 +16,12 @@ class AddRecipe extends Component {
     })
   }
 
+  handleIngredient = (event) => {
+    this.setState({
+      nextIngredient: event.target.value
+    })
+  }
+
   showIngredients = () => {
     return (
       <ul>
@@ -24,6 +30,16 @@ class AddRecipe extends Component {
         })}
       </ul>
     )
+  }
+
+  addIngredient = () => {
+    if (this.state.nextIngredient !== ''){
+      const ingredientsArr = [...this.state.ingredients, this.state.nextIngredient]
+      this.setState({
+        ingredients: ingredientsArr,
+        nextIngredient: ''
+      })
+    }
   }
 
   render() {
@@ -35,6 +51,12 @@ class AddRecipe extends Component {
           onChange={this.handleName}
           placeholder='name'
         />
+        <input 
+          value={this.state.nextIngredient}
+          onChange={this.handleIngredient}
+          placeholder='ingredient'
+        />
+        <button onClick={this.addIngredient} className='btn btn-primary btn-xs'>add</button>
         <p>Name: {this.state.name}</p>
         <p>ingredients: {this.showIngredients()}</p>
       </div>
