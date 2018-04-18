@@ -24,11 +24,20 @@ class AddRecipe extends Component {
     })
   }
 
+  deleteIngredient = (event) => {
+    console.log(event.target.value)
+    const arrIngredients = this.state.ingredients.filter(ingredient =>  ingredient !== event.target.value)
+    this.setState({ingredients: arrIngredients})
+  }
+
   showIngredients = () => {
     return (
-      <ul>
+      <ul className='list-group'>
         {this.state.ingredients.map(ingredient => {
-          return <li>{ingredient}</li>
+          return <li className='list-group-item'>
+            <span>{ingredient}</span>
+            <span><button onClick={this.deleteIngredient} value={ingredient} className='btn btn-warning del-button'>-</button></span>
+          </li>
         })}
       </ul>
     )
@@ -76,8 +85,8 @@ class AddRecipe extends Component {
           onChange={this.handleIngredient}
           placeholder='ingredient'
         />
-        <button onClick={this.addIngredient} className='btn btn-primary btn-xs'>add</button>
-        <p>Name: {this.state.name}</p>
+        <button onClick={this.addIngredient} className='btn btn-primary btn-xs'>+</button>
+        <h4>Name: {this.state.name}</h4>
         <p>ingredients: {this.showIngredients()}</p>
         {this.state.warning ? <p className='warningAlert'>you must have a name and one ingredient</p> : ''}
         <hr />
