@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Accordion, AccordionItem } from 'react-sanfona'
+import { deleteRecipe } from '../actions'
 import _ from 'lodash'
 
 class RecipeListAccordian extends Component {
@@ -10,6 +11,11 @@ class RecipeListAccordian extends Component {
       return <li className='list-group-item'>{item}</li>
     })
   }
+
+  deleteRecipe = (recipe) => {
+    this.props.deleteRecipe(recipe)
+  }
+
   render() {
     return (
       <Accordion>
@@ -18,6 +24,18 @@ class RecipeListAccordian extends Component {
             <AccordionItem title={`${item.name}`} expanded={item === 1}>
               <ul className='list-group'>
                 {this.makeList(item.ingredients)}
+                <li>
+                  <span>
+                    <button
+                      onClick={() => {
+                        this.deleteRecipe(item.name)
+                      }} 
+                      className='btn btn-danger'
+                    >                  
+                    delete</button>
+                  </span>
+                  <span><button className='btn btn-warning del-button'>edit</button></span>
+                </li>
               </ul>
             </AccordionItem>
           );
@@ -33,4 +51,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(RecipeListAccordian)
+export default connect(mapStateToProps, { deleteRecipe })(RecipeListAccordian)

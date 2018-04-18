@@ -8,6 +8,10 @@ h1 {
   text-align: center
 }
 
+button {
+  margin: 5px;
+}
+
 #newRecipe {
   float: right;
 }
@@ -25,3 +29,4 @@ h1 {
   font-size: .75em;
   text-align: center;
 }
+
