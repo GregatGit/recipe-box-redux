@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-//import { connect } from 'react-redux'
+import { addRecipe } from '../actions'
+import { connect } from 'react-redux'
 
 class AddRecipe extends Component {
   constructor (props) {
@@ -7,7 +8,8 @@ class AddRecipe extends Component {
     this.state = {
       name: '',
       nextIngredient: '',
-      ingredients: ['apple', 'pears']
+      ingredients: [],
+      warning: false
     }
   }
   handleName = (event) => {
@@ -42,6 +44,24 @@ class AddRecipe extends Component {
     }
   }
 
+  addNewRecipe = () => {
+    if (this.state.name === '' || this.state.ingredients.length === 0){
+      this.setState({warning: true})
+      return
+    }
+    const obj = {
+      name: this.state.name,
+      ingredients: this.state.ingredients
+    }
+    this.props.addRecipe(obj)
+    this.setState({
+      warning: false,
+      name: '',
+      nextIngredient: '',
+      ingredients: [],
+    })
+  }
+
   render() {
     return (
       <div>
@@ -59,9 +79,12 @@ class AddRecipe extends Component {
         <button onClick={this.addIngredient} className='btn btn-primary btn-xs'>add</button>
         <p>Name: {this.state.name}</p>
         <p>ingredients: {this.showIngredients()}</p>
+        {this.state.warning ? <p className='warningAlert'>you must have a name and one ingredient</p> : ''}
+        <hr />
+        <button onClick={this.addNewRecipe} className='btn btn-primary btn-block'>Add recipe</button>
       </div>
     )
   }  
 }
 
-export default AddRecipe
+export default connect(null, { addRecipe })(AddRecipe)

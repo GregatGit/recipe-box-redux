@@ -19,3 +19,9 @@ h1 {
 .del-button {
   float: right;
 }
+
+.warningAlert {
+  color: red;
+  font-size: .75em;
+  text-align: center;
+}

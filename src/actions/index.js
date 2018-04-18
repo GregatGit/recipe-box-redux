@@ -9,7 +9,7 @@ export function deleteRecipe(name) {
 }
 
 export function addRecipe(recipe) {
-  //console.log('recipe',recipe)
+  console.log('recipe',recipe)
   return {
     type: ADD_RECIPE,
     payload: recipe
