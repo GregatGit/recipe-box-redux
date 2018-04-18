@@ -25,7 +25,6 @@ class AddRecipe extends Component {
   }
 
   deleteIngredient = (event) => {
-    console.log(event.target.value)
     const arrIngredients = this.state.ingredients.filter(ingredient =>  ingredient !== event.target.value)
     this.setState({ingredients: arrIngredients})
   }
@@ -44,7 +43,12 @@ class AddRecipe extends Component {
   }
 
   addIngredient = () => {
-    if (this.state.nextIngredient !== ''){
+    let newIngredient = this.state.nextIngredient
+    if (this.state.ingredients.indexOf(newIngredient) > -1){
+      this.setState({nextIngredient: ''})
+      return
+    }
+    if (newIngredient !== ''){
       const ingredientsArr = [...this.state.ingredients, this.state.nextIngredient]
       this.setState({
         ingredients: ingredientsArr,

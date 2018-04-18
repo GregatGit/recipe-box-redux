@@ -22,7 +22,7 @@ class App extends Component {
         <div>
           <h1>Recipe Box</h1>
         </div>
-        {this.state.showRecipeButton ? <div><RecipeListAccordian /><button onClick={this.changeView} className='btn btn-primary'>add recipe</button></div> : <div><AddRecipe /><button onClick={this.changeView} className='btn btn-danger'>Cancel</button></div>}
+        {this.state.showRecipeButton ? <div><RecipeListAccordian /><button onClick={this.changeView} className='btn btn-primary'>add recipe</button></div> : <div><AddRecipe /><button onClick={this.changeView} className='btn btn-danger'>HOME</button></div>}
       </div>
     );
   }
