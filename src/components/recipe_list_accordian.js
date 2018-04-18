@@ -8,7 +8,7 @@ class RecipeListAccordian extends Component {
 
   makeList = (list, name) => {
     return list.map(item => {
-      return <li key={item} className='list-group-item'><span>{item}</span><span className='del-button'><button onClick={() => this.removeIngredient(name, item)}><i class="fas fa-ban"></i></button></span></li>
+      return <li key={item} className='list-group-item'><span>{item}</span><span className='del-button'><button onClick={() => this.removeIngredient(name, item)}><i className="fas fa-ban"></i></button></span></li>
     })
   }
 
@@ -31,7 +31,7 @@ class RecipeListAccordian extends Component {
                 {this.makeList(item.ingredients, item.name)}
                 <li className='list-group-item'>
                   <span><input placeholder='add new ingredient' /></span>
-                  <span className='del-button'><button><i class="far fa-check-circle"></i></button></span>
+                  <span className='del-button'><button><i className="far fa-check-circle"></i></button></span>
                 </li>
                 <li>
                   <span>
