@@ -3,6 +3,7 @@ import RecipeListAccordion from './components/recipe_list_accordion'
 import AddRecipe from './components/recipe_add'
 import { connect } from 'react-redux'
 import { resetRecipes } from './actions'
+import Footer from './components/Footer'
 
 class App extends Component {
   constructor (props) {
@@ -26,10 +27,13 @@ class App extends Component {
       <div>
         <div>
           <h1>Recipe Box</h1>
+          <h3>A freeCodeCamp challenge</h3>
+          <h6>by Greg Duncan</h6>
         </div>
         {
           this.state.showRecipeButton ? 
             <div>
+              <h7><b>click on the recipes</b></h7>
               <RecipeListAccordion />
               <button onClick={this.changeView} className='btn btn-primary'>add recipe</button>
             </div> 
@@ -39,8 +43,9 @@ class App extends Component {
         <div>
           <button onClick={this.resetRecipes} className='btn btn-info btn-block'>Reset Recipes</button>
         </div>
+        <Footer />
       </div>
-    );
+    )
   }
 }
 

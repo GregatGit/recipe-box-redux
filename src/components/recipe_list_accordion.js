@@ -13,7 +13,6 @@ class RecipeListAccordion extends Component {
     }
   }
   
-
   makeList = (list, name) => {
     return list.map(item => {
       return <li key={item} className='list-group-item'><span>{item}</span><span className='del-button'><button onClick={() => this.removeIngredient(name, item)}><i className="fas fa-ban"></i></button></span></li>
@@ -79,7 +78,7 @@ class RecipeListAccordion extends Component {
                 </li>
               </ul>
             </AccordionItem>
-          );
+          )
         })}
       </Accordion>
     )
