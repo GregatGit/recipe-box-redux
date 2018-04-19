@@ -1,21 +1,19 @@
 import _ from 'lodash'
 import data from '../data/recipes.json'
-import { DELETE_RECIPE, ADD_RECIPE, DELETE_INGREDIENT, ADD_INGREDIENT } from '../actions'
+import { DELETE_RECIPE, ADD_RECIPE, DELETE_INGREDIENT, ADD_INGREDIENT, RESET_RECIPES } from '../actions'
 
-export default function(state = null, action) {
-
-  if (!state) {
-    if (localStorage['myRecipes']){
-      state = JSON.parse(localStorage.myRecipes)
-    }else{
-      state = _.mapKeys(data, 'name')
-      updateLocalStorage(state)
-    }
+const initialState = () => {
+  if (localStorage['myRecipes']){
+    return JSON.parse(localStorage.myRecipes)
+  }else{
+    return _.mapKeys(data, 'name')
   }
+} 
+
+export default function(state = initialState(), action) {
 
   switch (action.type) {
-    case DELETE_RECIPE:
-      
+    case DELETE_RECIPE:     
       const deleRecipeState = _.omit(state, action.payload)
       updateLocalStorage(deleRecipeState)
       return deleRecipeState
@@ -26,17 +24,20 @@ export default function(state = null, action) {
       return addRecipeSate
     
     case DELETE_INGREDIENT:
-      const newState = Object.assign({}, state);
+      const deleteIngredientState = Object.assign({}, state);
       const newIngredients = state[action.payload.recipe].ingredients.filter(ele => ele !== action.payload.ingredient)
-      newState[action.payload.recipe].ingredients = newIngredients
-      updateLocalStorage(newState)
-      return newState
+      deleteIngredientState[action.payload.recipe].ingredients = newIngredients
+      updateLocalStorage(deleteIngredientState)
+      return deleteIngredientState
     
     case ADD_INGREDIENT:
-      const myState = Object.assign({}, state);
-      myState[action.payload.recipe].ingredients.push(action.payload.ingredient)
-      updateLocalStorage(myState)
-      return myState
+      const addIngredientState = Object.assign({}, state);
+      addIngredientState[action.payload.recipe].ingredients.push(action.payload.ingredient)
+      updateLocalStorage(addIngredientState)
+      return addIngredientState
+
+    case RESET_RECIPES:
+      return _.mapKeys(data, 'name')
     
     default:
       break;
@@ -57,7 +58,7 @@ function updateLocalStorage (obj) {
 //       return state.filter(recipe => recipe.name !== action.payload)
 
 //     case ADD_RECIPE:
-//       // const newState = state newState[action.payload.name] = action.payload return
+//       // const deleteIngredientState = state deleteIngredientState[action.payload.name] = action.payload return
 //       // _.assign(state, {[action.payload.name]: action.payload}) handle as array now
 //       // instead of object
 //       return [
@@ -67,7 +68,7 @@ function updateLocalStorage (obj) {
 //       ]
 
 //     case DELETE_INGREDIENT:
-//       const newState = state.map(recipe => {
+//       const deleteIngredientState = state.map(recipe => {
 //         // if it's the recipe we want to change filter the ingredients for that recipe
 //         // and return it with the other recipes
 //         if (recipe.name === action.payload.recipe) {
@@ -79,7 +80,7 @@ function updateLocalStorage (obj) {
 
 //         return recipe
 //       })
-//       return newState
+//       return deleteIngredientState
 
 //     default:
 //       break;
