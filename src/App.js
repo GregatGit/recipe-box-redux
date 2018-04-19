@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RecipeList from './components/recipe_list'
 import RecipeListAccordian from './components/recipe_list_accordian'
 import AddRecipe from './components/recipe_add'
 
