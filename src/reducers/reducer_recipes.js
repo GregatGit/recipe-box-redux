@@ -5,27 +5,37 @@ import { DELETE_RECIPE, ADD_RECIPE, DELETE_INGREDIENT, ADD_INGREDIENT } from '..
 export default function(state = null, action) {
 
   if (!state) {
-    state = _.mapKeys(data, 'name')
+    if (localStorage['myRecipes']){
+      state = JSON.parse(localStorage.myRecipes)
+    }else{
+      state = _.mapKeys(data, 'name')
+      updateLocalStorage(state)
+    }
   }
 
   switch (action.type) {
     case DELETE_RECIPE:
       
-      return _.omit(state, action.payload)
+      const deleRecipeState = _.omit(state, action.payload)
+      updateLocalStorage(deleRecipeState)
+      return deleRecipeState
   
     case ADD_RECIPE:
-
-      return _.assign(state, {[action.payload.name]: action.payload})
+      const addRecipeSate = _.assign(state, {[action.payload.name]: action.payload})
+      updateLocalStorage(addRecipeSate)
+      return addRecipeSate
     
     case DELETE_INGREDIENT:
       const newState = Object.assign({}, state);
       const newIngredients = state[action.payload.recipe].ingredients.filter(ele => ele !== action.payload.ingredient)
       newState[action.payload.recipe].ingredients = newIngredients
+      updateLocalStorage(newState)
       return newState
     
     case ADD_INGREDIENT:
       const myState = Object.assign({}, state);
       myState[action.payload.recipe].ingredients.push(action.payload.ingredient)
+      updateLocalStorage(myState)
       return myState
     
     default:
@@ -33,6 +43,10 @@ export default function(state = null, action) {
   }
   return state
 }
+function updateLocalStorage (obj) {
+  localStorage.setItem('myRecipes', JSON.stringify(obj))
+}
+// Tips from Aaron using an array instead of an object
 // default/initial state = data
 // export default function (state = data, action) {
 //   // below will map the data array to an object. Since it's a list it is easier to

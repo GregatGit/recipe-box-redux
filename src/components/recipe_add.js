@@ -91,8 +91,8 @@ class AddRecipe extends Component {
         />
         <button onClick={this.addIngredient} className='btn btn-primary btn-xs'>+</button>
         <h4>Name: {this.state.name}</h4>
-        <p>ingredients: {this.showIngredients()}</p>
-        {this.state.warning ? <p className='warningAlert'>you must have a name and one ingredient</p> : ''}
+        <h5>ingredients: {this.showIngredients()}</h5>
+        {this.state.warning ? <p className='warningAlert'>you must have a name and at least 1 ingredient</p> : ''}
         <hr />
         <button onClick={this.addNewRecipe} className='btn btn-primary btn-block'>Add recipe</button>
       </div>
