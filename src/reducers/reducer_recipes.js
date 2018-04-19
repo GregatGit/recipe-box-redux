@@ -44,6 +44,7 @@ export default function(state = initialState(), action) {
   }
   return state
 }
+
 function updateLocalStorage (obj) {
   localStorage.setItem('myRecipes', JSON.stringify(obj))
 }

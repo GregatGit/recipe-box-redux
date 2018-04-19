@@ -12,6 +12,11 @@ button {
   margin: 5px;
 }
 
+Accordion {
+  widows: 80%;
+  margin-left: 10%;
+}
+
 #newRecipe {
   float: right;
 }

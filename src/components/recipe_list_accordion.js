@@ -4,7 +4,7 @@ import { Accordion, AccordionItem } from 'react-sanfona'
 import { deleteRecipe, deleteIngredient, addIngredient } from '../actions'
 import _ from 'lodash'
 
-class RecipeListAccordian extends Component {
+class RecipeListAccordion extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -73,7 +73,7 @@ class RecipeListAccordian extends Component {
                       }} 
                       className='btn btn-danger'
                     >                  
-                    delete</button>
+                    delete {item.name}</button>
                   </span>
                   <span></span>
                 </li>
@@ -92,4 +92,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { deleteRecipe, deleteIngredient, addIngredient })(RecipeListAccordian)
+export default connect(mapStateToProps, { deleteRecipe, deleteIngredient, addIngredient })(RecipeListAccordion)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RecipeListAccordian from './components/recipe_list_accordian'
+import RecipeListAccordion from './components/recipe_list_accordion'
 import AddRecipe from './components/recipe_add'
 import { connect } from 'react-redux'
 import { resetRecipes } from './actions'
@@ -30,7 +30,7 @@ class App extends Component {
         {
           this.state.showRecipeButton ? 
             <div>
-              <RecipeListAccordian />
+              <RecipeListAccordion />
               <button onClick={this.changeView} className='btn btn-primary'>add recipe</button>
             </div> 
             : <div><AddRecipe /><button onClick={this.changeView} className='btn btn-danger'>HOME</button></div>
