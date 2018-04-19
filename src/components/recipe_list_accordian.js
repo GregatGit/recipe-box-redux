@@ -5,6 +5,13 @@ import { deleteRecipe, deleteIngredient } from '../actions'
 import _ from 'lodash'
 
 class RecipeListAccordian extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      recipes: this.props.recipes
+    }
+  }
+  
 
   makeList = (list, name) => {
     return list.map(item => {
@@ -24,7 +31,7 @@ class RecipeListAccordian extends Component {
   render() {
     return (
       <Accordion>
-        {_.map(this.props.ingredients, item => {
+        {_.map(this.state.recipes, item => {
           return (
             <AccordionItem key={item.name} title={`${item.name}`} expanded={item === 1}>
               <ul className='list-group'>
@@ -56,7 +63,7 @@ class RecipeListAccordian extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    ingredients: state.recipes
+    recipes: state.recipes
   }
 }
 
