@@ -21,7 +21,6 @@ class RecipeListAccordian extends Component {
   }
 
   removeIngredient = (item, name) => {
-    console.log(item, name)
     this.props.deleteIngredient (item, name)
   }
 

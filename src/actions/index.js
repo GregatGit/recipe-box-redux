@@ -11,7 +11,6 @@ export function deleteRecipe(name) {
 }
 
 export function addRecipe(recipe) {
-  console.log('recipe',recipe)
   return {
     type: ADD_RECIPE,
     payload: recipe
@@ -19,7 +18,6 @@ export function addRecipe(recipe) {
 }
 
 export function deleteIngredient(recipe, ingredient) {
-  console.log('recipe: ', recipe, 'ing: ', ingredient)
   return {
     type: DELETE_INGREDIENT,
     payload: { recipe, ingredient }

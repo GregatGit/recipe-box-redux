@@ -10,7 +10,6 @@ class App extends Component {
     }
   }
   changeView = () => {
-    console.log('change view')
     let temp = !this.state.showRecipeButton
     this.setState({showRecipeButton: temp})
   }

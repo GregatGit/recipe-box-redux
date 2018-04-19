@@ -33,7 +33,7 @@ class AddRecipe extends Component {
     return (
       <ul className='list-group'>
         {this.state.ingredients.map(ingredient => {
-          return <li className='list-group-item'>
+          return <li key={ingredient} className='list-group-item'>
             <span>{ingredient}</span>
             <span><button onClick={this.deleteIngredient} value={ingredient} className='btn btn-warning del-button'>-</button></span>
           </li>
