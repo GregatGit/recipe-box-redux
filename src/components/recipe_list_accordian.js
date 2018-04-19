@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Accordion, AccordionItem } from 'react-sanfona'
-import { deleteRecipe, deleteIngredient } from '../actions'
+import { deleteRecipe, deleteIngredient, addIngredient } from '../actions'
 import _ from 'lodash'
 
 class RecipeListAccordian extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      recipes: this.props.recipes
+      recipes: this.props.recipes,
+      ingredient: ''
     }
   }
   
@@ -28,6 +29,17 @@ class RecipeListAccordian extends Component {
     this.props.deleteRecipe(recipe)
   }
 
+  addIngredient = (recipe) => {
+    if (this.state.ingredient !== ''){
+      this.props.addIngredient(recipe, this.state.ingredient)
+      this.setState({ingredient: ''})
+    }
+  }
+
+  handleInput = (event) => {
+    this.setState({ingredient: event.target.value})
+  }
+
   render() {
     return (
       <Accordion>
@@ -37,8 +49,22 @@ class RecipeListAccordian extends Component {
               <ul className='list-group'>
                 {this.makeList(item.ingredients, item.name)}
                 <li className='list-group-item'>
-                  <span><input placeholder='add new ingredient' /></span>
-                  <span className='del-button'><button><i className="far fa-check-circle"></i></button></span>
+                  <span>
+                    <input 
+                      placeholder='add new ingredient'
+                      value={this.state.ingredient}
+                      onChange={this.handleInput} 
+                    />
+                  </span>
+                  <span className='del-button'>
+                    <button
+                      onClick={() => {
+                        this.addIngredient(item.name)
+                      }}
+                    >
+                      <i className="far fa-check-circle"></i>
+                    </button>
+                  </span>
                 </li>
                 <li>
                   <span>
@@ -67,4 +93,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { deleteRecipe, deleteIngredient })(RecipeListAccordian)
+export default connect(mapStateToProps, { deleteRecipe, deleteIngredient, addIngredient })(RecipeListAccordian)

@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import data from '../data/recipes.json'
-import { DELETE_RECIPE, ADD_RECIPE, DELETE_INGREDIENT } from '../actions'
+import { DELETE_RECIPE, ADD_RECIPE, DELETE_INGREDIENT, ADD_INGREDIENT } from '../actions'
 
 export default function(state = null, action) {
 
@@ -22,6 +22,11 @@ export default function(state = null, action) {
       const newIngredients = state[action.payload.recipe].ingredients.filter(ele => ele !== action.payload.ingredient)
       newState[action.payload.recipe].ingredients = newIngredients
       return newState
+    
+    case ADD_INGREDIENT:
+      const myState = Object.assign({}, state);
+      myState[action.payload.recipe].ingredients.push(action.payload.ingredient)
+      return myState
     
     default:
       break;
