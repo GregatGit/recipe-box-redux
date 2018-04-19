@@ -31,7 +31,7 @@ class RecipeListAccordian extends Component {
   render() {
     return (
       <Accordion>
-        {_.map(this.state.recipes, item => {
+        {_.map(this.props.recipes, item => {
           return (
             <AccordionItem key={item.name} title={`${item.name}`} expanded={item === 1}>
               <ul className='list-group'>
