@@ -33,7 +33,7 @@ class App extends Component {
         {
           this.state.showRecipeButton ? 
             <div>
-              <h7><b>click on the recipes</b></h7>
+              <p><b>click on the recipes</b></p>
               <RecipeListAccordion />
               <button onClick={this.changeView} className='btn btn-primary'>add recipe</button>
             </div> 

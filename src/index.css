@@ -42,7 +42,7 @@ Accordion {
 /* .footerStyle and .phantomStyle from https://codesandbox.io/s/l7wryrr64l */
 
 .footerStyle {
-  background-color: rgb(65, 6, 175);
+  background-color: rgb(66, 137, 230);
   font-size: 20px;
   color: white;
   border-top: 1px solid #E7E7E7;
@@ -55,11 +55,11 @@ Accordion {
   width: 100%;
 };
 
-.phantomStyle {
+/* .phantomStyle {
   display: block;
   padding: 20px;
   height: 60px;
   width: 100%;
-};
+}; */
 
 
